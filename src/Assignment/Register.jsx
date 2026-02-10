@@ -7,14 +7,30 @@ const Register = ({ setPage }) => {
     email: "",
     password: ""
   });
+  const [emailError, setEmailError] = useState("");
+
+  const isValidEmail = (value) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  };
 
   const register = () => {
-    if (!form.name || !form.email || !form.password) {
+    const name = (form.name || "").trim();
+    const email = (form.email || "").trim();
+    const password = form.password || "";
+
+    if (!name || !email || !password) {
       alert("All fields are required");
       return;
     }
 
-    localStorage.setItem("user", JSON.stringify(form));
+    if (!isValidEmail(email)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+
+    // save normalized user
+    const user = { name, email, password };
+    localStorage.setItem("user", JSON.stringify(user));
     alert("Registration Successful");
     setPage("login");
   };
@@ -28,9 +44,16 @@ const Register = ({ setPage }) => {
       />
 
       <input
-        placeholder="Email Address" type="email"className="auth-input"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
+        placeholder="Email Address" type="email" className="auth-input"
+        onChange={(e) => {
+          const v = e.target.value;
+          setForm({ ...form, email: v });
+          setEmailError(isValidEmail(v) ? "" : "Please enter a valid email address");
+        }}
       />
+      {emailError && (
+        <div style={{ color: '#ffdddd', marginBottom: 10, fontSize: 13 }}>{emailError}</div>
+      )}
 
       <input
         type="password" placeholder="Password" className="auth-input"
