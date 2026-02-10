@@ -1,18 +1,25 @@
+import './Screens.css';
+
 const Success = () => {
   return (
-    <div
-      style={{
-        maxWidth: "420px",
-        padding: "30px",
-        borderRadius: "18px",
-        background: "linear-gradient(135deg,#43cea2,#185a9d)",
-        color: "#fff",
-        textAlign: "center",
-        boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
-      }}
-    >
-      <h2>🎉 Booking Confirmed</h2>
-      <p>Your ticket has been successfully booked.</p>
+    <div className="success-container">
+      <div className="success-icon">🎉</div>
+      <h2 className="success-title">Booking Confirmed!</h2>
+      <p className="success-message">
+        Your ticket has been successfully booked.
+        <br />
+        Check your email for confirmation details.
+      </p>
+      <div className="success-details">
+        <div className="success-detail-item">
+          <span className="success-detail-label">📧 Status:</span>
+          <span className="success-detail-value">Confirmed</span>
+        </div>
+        <div className="success-detail-item">
+          <span className="success-detail-label">🎫 Booking ID:</span>
+          <span className="success-detail-value">#{Math.floor(Math.random() * 100000)}</span>
+        </div>
+      </div>
     </div>
   );
 };

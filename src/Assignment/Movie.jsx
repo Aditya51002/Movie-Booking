@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './Screens.css';
 
 const Movie = ({ setPage, setSelectedMovie }) => {
   const [movies, setMovies] = useState([]);
@@ -10,26 +11,22 @@ const Movie = ({ setPage, setSelectedMovie }) => {
   }, []);
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "25px", justifyContent: "center" }}>
+    <div className="movie-container">
       {movies.map((m, i) => (
         <div
-          key={i}
-          style={{
-            width: "220px",
-            background: "#fff",
-            borderRadius: "14px",
-            padding: "12px",
-            cursor: "pointer",
-            boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
-          }}
-          onClick={() => {
-            setSelectedMovie(m);
-            setPage("cinema");
-          }}
+          key={i}className="movie-card" onClick={() => {setSelectedMovie(m); setPage("cinema");}}
         >
-          <img src={m["#IMG_POSTER"]} alt="" style={{ width: "100%", height: "300px", borderRadius: "10px" }} />
-          <h4>{m["#TITLE"]}</h4>
-          <p>⭐ Rank: {m["#RANK"]}</p>
+          <img  src={m["#IMG_POSTER"]} 
+            alt={m["#TITLE"]} 
+            className="movie-poster" 
+          />
+          <div className="movie-info">
+            <h4 className="movie-title">{m["#TITLE"]}</h4>
+            <p className="movie-rank">
+              <span className="movie-rank-star">⭐</span> 
+              Rank: {m["#RANK"]}
+            </p>
+          </div>
         </div>
       ))}
     </div>

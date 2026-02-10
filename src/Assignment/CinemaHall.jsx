@@ -1,33 +1,35 @@
+import './Screens.css';
+
 const halls = [
-  { name: "PVR Cinemas", city: "Delhi" },
-  { name: "INOX", city: "Mumbai" },
-  { name: "Cinepolis", city: "Bangalore" }
+  { name: "PVR Cinemas", city: "Jalandhar" },
+  { name: "INOX", city: "Phagwara" },
+  { name: "Cinepolis", city: "Amritshard" }
 ];
 
 const CinemaHall = ({ movie, setPage, setSelectedCinema }) => {
   return (
-    <div>
-      <h2 style={{ color: "#fff" }}>{movie["#TITLE"]}</h2>
+    <div className="cinema-container">
+      <h2 className="cinema-title">{movie["#TITLE"]}</h2>
 
-      {halls.map((h, i) => (
-        <div
-          key={i}
-          style={{
-            background: "#fff",
-            padding: "15px",
-            margin: "15px",
-            borderRadius: "12px",
-            cursor: "pointer"
-          }}
-          onClick={() => {
-            setSelectedCinema(h);
-            setPage("showtime");
-          }}
-        >
-          <h3>{h.name}</h3>
-          <p>{h.city}</p>
-        </div>
-      ))}
+      <div className="cinema-grid">
+        {halls.map((h, i) => (
+          <div
+            key={i}
+            className="cinema-card"
+            onClick={() => {
+              setSelectedCinema(h);
+              setPage("showtime");
+            }}
+          >
+            <div className="cinema-card-content">
+              <span className="cinema-icon">🎬</span>
+              <h3 className="cinema-name">{h.name}</h3>
+              <p className="cinema-city">📍 {h.city}</p>
+              <span className="cinema-badge">Book Now</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

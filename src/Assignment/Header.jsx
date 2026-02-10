@@ -1,16 +1,13 @@
+import './Layout.css';
+
 const Header = () => {
   return (
-    <div
-      style={{
-        padding: "20px",
-        textAlign: "center",
-        fontSize: "26px",
-        fontWeight: "bold",
-        color: "#fff",
-        background: "rgba(0,0,0,0.3)"
-      }}
-    >
-      🎬 Movie Booking Application
+    <div className="header-container">
+      <h1 className="header-title">
+        <span className="header-icon">🎬</span>
+        Movie Booking.
+      </h1>
+      <p className="header-subtitle">BOOK SHOW</p>
     </div>
   );
 };

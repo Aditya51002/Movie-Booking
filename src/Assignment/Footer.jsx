@@ -1,14 +1,9 @@
+import './Layout.css';
+
 const Footer = () => {
   return (
-    <div
-      style={{
-        padding: "10px",
-        textAlign: "center",
-        color: "#ccc",
-        background: "rgba(0,0,0,0.25)"
-      }}
-    >
-      © 2026 Movie Booking App
+    <div className="footer-container">
+      <p className="footer-text">© 2026 Movie Booking App. All rights reserved.</p>
     </div>
   );
 };
